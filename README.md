@@ -17,6 +17,10 @@ The sampling rates of the sensors which are processed with digital filters are l
 
 The filter co-efficients blah and blah, described in the subsequent section are obtain by using the convolution operator to combine the filter co-efficients of blah and blah with a slope detection filter of order equal to the low pass filter.
 
+The coefficients for the sloping filter can be obtained from the following equation:
+
+See 'Slope Filtering: An FIR Approach to Linear Regression' section "REAL-TIME RATE OF CHANGE ESTIMATION", Eq. (8) [Available online: http://www.claysturner.com/dsp/fir_regression.pdf]
+
 ## 2 - Pre-processing MEMS sensor data
 
 The filter coefficients in section 1. were used to process the data from the tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor
@@ -46,4 +50,4 @@ The signals processed in section 2. Processing MEMS sensor data
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" title="\Large {\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" />
 
-  
+## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
