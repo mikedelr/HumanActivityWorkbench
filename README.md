@@ -4,13 +4,13 @@
 
 The sampling rates of the sensors which are processed with digital filters are listed below:
 
-|                                      Sensor Sampling Rate                                      | Filter Type                      
-|------------------------------------------------------------------------------------------------|-----------------|
-|                                                                                                |                 |
+|                                      Sensor Sampling Rate                                      |           Filter Type           |   
+|------------------------------------------------------------------------------------------------|---------------------------------|
+|                                                                                                |                                 |
 |<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz | Low-pass Filter / Differentiator| 
-|                                                                                                |                 |
+|                                                                                                |                                 |
 |<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz |          Band-pass Filter       |
-|                                                                                                |                 |
+|                                                                                                |                                 |
 |<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter / Differentiator| 
 
 
