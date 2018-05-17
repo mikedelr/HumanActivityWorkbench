@@ -20,6 +20,6 @@ the index k denotes the current time-step, N is the number of coefficients in th
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;\mathbf{\bar{a}}_{\text{lpfdif},k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(a_{\text{lpfdif},x}^{2}+a_{\text{lpfdif},y}^{2}+a_{\text{lpfdif},z}^{2})_{j}" title="\Large \mathbf{\bar{a}}_{\text{lpfdif},k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(a_{\text{lpfdif},x}^{2}+a_{\text{lpfdif},y}^{2}+a_{\text{lpfdif},z}^{2})_{j}" />
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" title="\Large {\Delta}P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" title="\Large {\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" />
 
   
