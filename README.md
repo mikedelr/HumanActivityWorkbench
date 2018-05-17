@@ -1,6 +1,6 @@
 # HumanActivityWorkbench
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{lpfdif}=\sum_{i}^{N}" title="\Large a_{lpfdif}=\sum_{i}^{N}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif}}=\sum_{i}^{N}" title="\Large a_{\text{lpfdif}}=\sum_{i}^{N}" />
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;\boldsymbol{\bar{\omega}}_{bpf,k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(\omega_{bpf,x}^{2}+\omega_{bpf,y}^{2}+\omega_{bpf,z}^{2})_{j}" title="\Large \boldsymbol{\bar{\omega}}_{bpf,k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(\omega_{bpf,x}^{2}+\omega_{bpf,y}^{2}+\omega_{bpf,z}^{2})_{j}" />
 
