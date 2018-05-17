@@ -7,15 +7,15 @@ The sampling rates of the sensors which are processed with digital filters are l
 |Sensor| Sampling Rate                                  | Filter Type     |  Pass Band | Filter Order | Filter Coefficients| 
 |------|------------------------------------------------|-----------------|------------|--------------|--------------------|
 |      |                                                |                 |            |              |                    |
-|Accelerometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.25 Hz            | N =  50  |                    |
+|Accelerometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.25 Hz            | N =  50  | <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpf,0.25}}" title="b_{\text{lpf,0.25}}" />                    |
 |      |                                                |                 |            |              |                    |
-|Gyroscope|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz | Band-pass Filter| <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}"/> = [1, 18] Hz           |  N =  99  |                    |
+|Gyroscope|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz | Band-pass Filter| <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}"/> = [1, 18] Hz           |  N =  99  | <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{bpf}}" title="b_{\text{bpf}}" />                   |
 |      |                                                |                 |            |              |                    |
-|Barometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |  N =  80  |                    |
+|Barometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |  N =  80  |  <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpf,0.015}}" title="b_{\text{lpf,0.015}}" />                  |
 
 ### 1a - Discrete time convolution
 
-## 2 - Processing MEMS sensor data
+## 2 - Pre-processing MEMS sensor data
 
 The filter coefficients in section 1. were used to process the data from the tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor
 
@@ -30,6 +30,10 @@ the index k denotes the current time-step, N is the number of coefficients in th
 the index k denotes the current time-step, N is the number of coefficients in the band-pass filter whose coefficients are <img src="https://latex.codecogs.com/svg.latex?\small&space;c_{\text{lpfdif}}" title="c_{\text{bpf}}" />. The barometer signal is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;p[k]" title="p[k]" />
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif}}-1}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif}}-1}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" />
+
+### 2a - Zero-order hold of the differential pressure signal 
+
+Recall in Section 1 that the sampling rate of the barometer is less than the sampling rate of the accelerometer/gyroscope. Rather than up-sample the barometer measurements using the zero order hold. The pre-processed differential pressure signal <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]" title="\Large {\partial}p[k]" /> is upsampled using the zero order hold
 
 ## 3 - Features summed/aggregated over the window
 The signals processed in section 2. Processing MEMS sensor data
