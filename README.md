@@ -6,6 +6,6 @@
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;\mathbf{\bar{a}}_{\text{lpfdif},k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(a_{\text{lpfdif},x}^{2}+a_{\text{lpfdif},y}^{2}+a_{\text{lpfdif},z}^{2})_{j}" title="\Large \mathbf{\bar{a}}_{\text{lpfdif},k}^{2}=\frac{1}{N}\sum_{j=k-N+1}^{k}(a_{\text{lpfdif},x}^{2}+a_{\text{lpfdif},y}^{2}+a_{\text{lpfdif},z}^{2})_{j}" />
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" title="\Large P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" title="\Large {\Delta}P_{k}=\frac{1}{N}\sum_{j=k-N+1}^{k}{\partial}p_{k}" />
 
   
