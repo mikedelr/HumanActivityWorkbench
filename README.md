@@ -1,5 +1,5 @@
 # HumanActivityWorkbench
 
 \[
-\sum_{i}^{N}
+$\sum_{i}^{N}$
 \]
