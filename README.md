@@ -4,14 +4,14 @@
 
 The sampling rates of the sensors which are processed with digital filters are listed below:
 
-|                                      Sensor Sampling Rate                                      | Filter Type     |  Pass Band |  
-|------------------------------------------------------------------------------------------------|-----------------|------------|
-|                                                                                                |                 |            |
-|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.25 Hz            |
-|                                                                                                |                 |            |
-|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz | Band-pass Filter| <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}"/> = [1, 18] Hz           |
-|                                                                                                |                 |            |
-|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |
+|Sensor|                                      Sampling Rate                                  | Filter Type     |  Pass Band |  
+|------|-------------------------------------------------------------------------------------|-----------------|------------|
+|      |                                                                                     |                 |            |
+|Accelerometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.25 Hz            |
+|      |                                                                                     |                 |            |
+|Gyroscope|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz | Band-pass Filter| <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}"/> = [1, 18] Hz           |
+|      |                                                                                     |                 |            |
+|Barometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |
 
 
 ## 2 - Processing MEMS sensor data
