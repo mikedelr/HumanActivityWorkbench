@@ -3,11 +3,14 @@
 ## Filter Coefficients
 
 ## Processing MEMS sensor data
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" />
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;\omega_{\text{bpf},x}[k]=\sum_{i=0}^{N}{c_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" title="\Large \omega_{\text{bpf},x}[k]=\sum_{i=0}^{N}{c_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" />
+the index k denotes the current time-step, N is the number of coefficients in the filter
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N-1}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N-1}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;\omega_{\text{bpf},x}[k]=\sum_{i=0}^{N-1}{c_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" title="\Large \omega_{\text{bpf},x}[k]=\sum_{i=0}^{N}{c_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N-1}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" />
 
 ## Features summed/aggregated over the window
 
