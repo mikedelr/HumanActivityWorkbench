@@ -1,6 +1,10 @@
 # Human Activity Workbench
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{x[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{x[k-i]}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{x[k-i]}" />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N}{c_{\text{lpfdif}}[i]}{\cdotp}{p[k-i]}" />
+
+
 
 # Features summed/aggregated over the window
 
