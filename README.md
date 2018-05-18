@@ -27,7 +27,7 @@ See 'Slope Filtering: An FIR Approach to Linear Regression' section "REAL-TIME R
 
 Finally these coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;{\beta}" title="{\beta}" /> are convolved with the coefficients for their respective low pass filter
 
-<img src="https://latex.codecogs.com/svg.latex?\small&space;(f*g)[k]=\sum_{}^{}" title="(f*g)[k]=\sum_{}^{}" />
+<img src="https://latex.codecogs.com/svg.latex?\small&space;(f*g)[i]=\sum_{j}^{N}{\beta_{j}}{b_{lpf}}" title="(f*g)[i]=\sum_{j}^{N}{\beta_{j}}{b_{lpf}}" />
 
 
 ## 2 - Pre-processing MEMS sensor data
