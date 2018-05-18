@@ -15,7 +15,7 @@ The sampling rates of the sensors which are processed with digital filters are l
 |      |               |             |           |              |                    |
 |Barometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |  N =  80  |  <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpf,0.015}}" title="b_{\text{lpf,0.015}}" />                  |
 
-### 1a - Discrete time convolution
+### 1a - Discrete convolution
 
 The filter co-efficients <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.25}}" title="b_{\text{lpfdif,0.25}}" /> and <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.015}}" title="b_{\text{lpfdif,0.015}}" />, described in the subsequent section are obtain by using convolution to combine the filter co-efficients of blah and blah (described in Section 1) with a slope detection filter of order equal to the low pass filter.
 
@@ -27,6 +27,7 @@ See 'Slope Filtering: An FIR Approach to Linear Regression' section "REAL-TIME R
 
 Finally these coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;{\beta}" title="{\beta}" /> are convolved with the coefficients for their respective low pass filter
 
+<img src="https://latex.codecogs.com/svg.latex?\small&space;(f*g)[k]=\sum_{}^{}" title="(f*g)[k]=\sum_{}^{}" />
 
 
 ## 2 - Pre-processing MEMS sensor data
