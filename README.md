@@ -57,6 +57,6 @@ The signals processed in Section 2 'Pre-processing MEMS sensor data' are summed 
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;\mathbf{\bar{a}}_{\text{lpfdif}}^{2}[k]=\frac{1}{N}\sum_{i=0}^{N-1}a_{\text{lpfdif},x}^{2}[k-i]+a_{\text{lpfdif},y}^{2}[k-i]+a_{\text{lpfdif},z}^{2}[k-i]" title="\Large \mathbf{\bar{a}}_{\text{lpfdif}}^{2}[k]=\frac{1}{N}\sum_{i=0}^{N-1}a_{\text{lpfdif},x}^{2}[k-i]+a_{\text{lpfdif},y}^{2}[k-i]+a_{\text{lpfdif},z}^{2}[k-i]" />
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" title="\Large {\Delta}P[k]=\frac{1}{N}\sum_{i=0}^{N-1}{\partial}p[k-i]" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;{\Delta}P[k]=\frac{1}{N_{\text{win}}}\sum_{i=0}^{N_{\text{win}}-1}{\partial}p[k-i]" title="\Large {\Delta}P[k]=\frac{1}{N_{\text{win}}}\sum_{i=0}^{N_{\text{win}}-1}{\partial}p[k-i]" />
 
 ## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
