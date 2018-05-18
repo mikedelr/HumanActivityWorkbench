@@ -1,5 +1,7 @@
 # Human Activity Workbench
 
+This wiki will describe how the signals from the accelerometer, gyroscope and barometric pressure sensor can be processed for the purposes of human activity recognition
+
 ## 1 - Filter Coefficients
 
 The sampling rates of the sensors which are processed with digital filters are listed below:
