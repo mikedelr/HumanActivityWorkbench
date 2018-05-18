@@ -23,6 +23,10 @@ The coefficients for the sloping filter can be obtained from the following equat
 
 See 'Slope Filtering: An FIR Approach to Linear Regression' section "REAL-TIME RATE OF CHANGE ESTIMATION", Eq. (8) [Available online: http://www.claysturner.com/dsp/fir_regression.pdf]
 
+Finally these coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;{\beta}" title="{\beta}" /> are convolved with the coefficients for their respective low pass filter
+
+
+
 ## 2 - Pre-processing MEMS sensor data
 
 The filter coefficients in section 1. were used to process the data from the tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor
