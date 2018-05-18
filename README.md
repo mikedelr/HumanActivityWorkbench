@@ -1,6 +1,6 @@
 # Human Activity Workbench
 
-This wiki will describe how the signals from the accelerometer, gyroscope and barometric pressure sensor can be processed for the purposes of human activity recognition
+This wiki will describe how the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor can be processed/filtered for the purposes of building a machine learning algorithm which can be used to recognize human activities
 
 ## 1 - Filter Coefficients
 
