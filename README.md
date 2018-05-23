@@ -1,4 +1,4 @@
-# Human Activity Recognition
+# Human Activity Workbench
 
 This project processes the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor to extract features which can be used by a machine learning algorithm to classify human activities
 
