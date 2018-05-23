@@ -69,7 +69,7 @@ or alternatively in terms of s[k-1]:
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" title="\Large s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" />
 
-Note, x[k] is the sample to be added to the accumulated total, whilst x[k-N_{\text{win}}] is the sample to be removed from the accumulated total, thus the previous <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_{\text{win}}" title="\Large N_{\text{win}}" /> samples need to be stored in a buffer
+Note, x[k] is the sample to be added to the accumulated total, whilst <img src="https://latex.codecogs.com/svg.latex?\Large&space;x[k-N_{\text{win}}]" title="\Large x[k-N_{\text{win}}]" /> is the sample to be removed from the accumulated total, thus the previous <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_{\text{win}}" title="\Large N_{\text{win}}"/> samples need to be stored in a buffer
 ## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
 Before passing the features to a machine learning algorithm or a model previously trained with extracted features, the features need to be re-aligned in the time domain so that they are representative of the same point in time. Recall from Section 1 that FIR filters were chosen for their linear phase response (i.e., the filter delays all frequency components of the signal by the same amount, i.e., half the number of taps/filter coefficients). Consequently the delay of each pre-processed signal is:
 
@@ -84,3 +84,7 @@ From this it is obvious that the processed accelerometer and gyroscope measureme
 The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160th previous sample (in the time of the accelerometer/gyroscope).
 
 Since the features from the accelerometer and gyroscope are also processed with FIR filters, these signals are both delayed by 50 samples. As a result, we only need to go back to the 110th sample (i.e., 160-50).
+
+## 5 - Classification or entry point for a Supervised Learning Algorithm
+
+At this point the aligned feature vector can be used by a classifier built using a machine learning algorithm to recognise human activities. Alternatively the feature vectors (along with the training labels) can be used by a machine learning algorithm to build a new classifier
