@@ -73,14 +73,14 @@ Note, x[k] is the sample to be added to the accumulated total, whilst x[k-N_{\te
 ## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
 Before passing the features to a machine learning algorithm or a model previously trained with extracted features, the features need to be re-aligned in the time domain so that they are representative of the same point in time. Recall from Section 1 that FIR filters were chosen for their linear phase response (i.e., the filter delays all frequency components of the signal by the same amount, i.e., half the number of taps/filter coefficients). Consequently the delay of each pre-processed signal is:
 
-| Filter Type | Number of Coefficients | Filter Coefficients | Delay |
-|:-----------:|:------------:|:-------------------:|:-----:|
-|             |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{bpf}}" title="\Large b_{\text{bpf}}" />                    | 50      |
-|             |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{lpfdif,0.25}}" title="\Large b_{\text{lpfdif,0.25}}" />            | 50      |
-|             |       160       |                     |   80    |
+Sampling Rate| Number of Coefficients | Filter Coefficients | Delay |
+|:----------:|:------------:|:-------------------:|:-----:|
+|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{gyr}" title="f_{gyr}" /> = 40 Hz             |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{bpf}}" title="\Large b_{\text{bpf}}"/>                    | 50      |
+|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{acc}" title="f_{acc}" /> = 40 Hz |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{lpfdif,0.25}}" title="\Large b_{\text{lpfdif,0.25}}"/>            | 50      |
+|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}"/> = 20 Hz |       160       | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{lpfdif,0.015}}" title="\Large b_{\text{lpfdif,0.015}}"/>                     |   80    |
 
 From this it is obvious that the processed accelerometer and gyroscope measurements need to be delayed so that the features extracted from them are representative of the same time point as the processed measurement from the barometer. 
 
-The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160th previous sample.
+The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160th previous sample (in the time of the accelerometer/gyroscope).
 
-Since the features from the accelerometer and gyroscope are also processed with FIR filters, these signals are both delayed by 50 samples. As a result, we only need to go back 110 samples (i.e., 160-50).
+Since the features from the accelerometer and gyroscope are also processed with FIR filters, these signals are both delayed by 50 samples. As a result, we only need to go back to the 110th sample (i.e., 160-50).
