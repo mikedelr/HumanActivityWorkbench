@@ -81,10 +81,6 @@ Before passing the features to a machine learning algorithm or a model previousl
 
 From this it is obvious that the processed accelerometer and gyroscope measurements need to be delayed so that the features extracted from them are representative of the same time point as the processed measurement from the barometer. 
 
-The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160 samples previously.
+The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160th previous sample.
 
-Since the accelerometer and gyroscope are 
-
-
-
-In order to process the data as close to real-time as possible, we need to retrieve the filters that have a shorter delay length so that are
+Since the features from the accelerometer and gyroscope are also processed with FIR filters, these signals are both delayed by 50 samples. As a result, we only need to go back 110 samples (i.e., 160-50).
