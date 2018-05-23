@@ -1,8 +1,8 @@
 # Human Activity Workbench
 
-This wiki will describe how the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor can be processed/filtered for the purposes of building a machine learning algorithm which can be used to recognize human activities
+This project processes the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor to extract features which can be used by a machine learning algorithm to classify human activities
 
-## 1 - Filter Coefficients
+## 1 - Filter Design and Filter Coefficients
 
 The sampling rates of the sensors which are processed with digital filters are listed below:
 
@@ -15,7 +15,7 @@ The sampling rates of the sensors which are processed with digital filters are l
 |      |               |             |           |              |                    |
 |Barometer|<img src="https://latex.codecogs.com/svg.latex?\small&space;f_{bar}" title="f_{bar}" /> = 20 Hz | Low-pass Filter | <img src="https://latex.codecogs.com/svg.latex?\small&space;f_{c}" title="f_{c}" /> = 0.015 Hz            |  N =  80  |  <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpf,0.015}}" title="b_{\text{lpf,0.015}}" />                  |
 
-### 1a - Discrete convolution
+### 1.1 - Discrete convolution
 
 The filter co-efficients <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.25}}" title="b_{\text{lpfdif,0.25}}" /> and <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.015}}" title="b_{\text{lpfdif,0.015}}" />, described in the subsequent section are obtain by using convolution to combine the filter co-efficients of blah and blah (described in Section 1) with a slope detection filter of order equal to the low pass filter.
 
@@ -46,7 +46,7 @@ The index k denotes the current time-step, N is the number of coefficients in th
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif,0.015}}-1}{b_{\text{lpfdif,0.015}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif,0.015}}-1}{b_{\text{lpfdif,0.015}}[i]}{\cdotp}{p[k-i]}" />
 
-### 2a - Zero-order hold of the differential pressure signal 
+### 2.1 - Zero-order hold of the differential pressure signal 
 
 Recall in Section 1 that the sampling rate of the barometer is less than the sampling rate of the accelerometer/gyroscope. Rather than up-sample the barometer measurements using the zero order hold. The pre-processed differential pressure signal <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]" title="\Large {\partial}p[k]" /> is upsampled using the zero order hold
 
@@ -63,4 +63,28 @@ The signals processed in Section 2 - 'Pre-processing MEMS sensor data' are summe
 
 Rather than sum all of the features in the buffer at each time-step, a running sum is maintainted and updated every time new sensor data is processed to reduce the amount of computations which need to be completed when features are extracted.
 
+### 3.1 Maintaining a running sum
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;s[k]=\left[\sum_{i=0}^{N_{\text{win}}-1}x[k-i]\right]" title="\Large s[k]=\left[\sum_{i=0}^{N_{\text{win}}-1}x[k-i]\right]" />
+or alternatively in terms of s[k-1]:
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" title="\Large s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" />
+
+Note, x[k] is the sample to be added to the accumulated total, whilst x[k-N_{\text{win}}] is the sample to be removed from the accumulated total, thus the previous <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_{\text{win}}" title="\Large N_{\text{win}}" /> samples need to be stored in a buffer
 ## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
+Before passing the features to a machine learning algorithm or a model previously trained with extracted features, the features need to be re-aligned in the time domain so that they are representative of the same point in time. Recall from Section 1 that FIR filters were chosen for their linear phase response (i.e., the filter delays all frequency components of the signal by the same amount, i.e., half the number of taps/filter coefficients). Consequently the delay of each pre-processed signal is:
+
+| Filter Type | Number of Coefficients | Filter Coefficients | Delay |
+|:-----------:|:------------:|:-------------------:|:-----:|
+|             |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{bpf}}" title="\Large b_{\text{bpf}}" />                    | 50      |
+|             |        100    | <img src="https://latex.codecogs.com/svg.latex?\Large&space;b_{\text{lpfdif,0.25}}" title="\Large b_{\text{lpfdif,0.25}}" />            | 50      |
+|             |       160       |                     |   80    |
+
+From this it is obvious that the processed accelerometer and gyroscope measurements need to be delayed so that the features extracted from them are representative of the same time point as the processed measurement from the barometer. 
+
+The differential pressure requires at least 160 samples from the barometer before the processed signal can be generated. Once the signal is processed, it is representative of an event that occurred 80 samples previously. Assuming the sampling rates of the accelerometer, gyroscope, and barometer are constant, this corresponds to the 160 samples previously.
+
+Since the accelerometer and gyroscope are 
+
+
+
+In order to process the data as close to real-time as possible, we need to retrieve the filters that have a shorter delay length so that are
