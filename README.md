@@ -1,6 +1,13 @@
 # Human Activity Workbench
 
-This project processes the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor to extract features which can be used by a machine learning algorithm to classify human activities
+This project processes the signals from a tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor to extract features which can be used by a machine learning algorithm to classify human activities. 
+
+Note: 
+
+(i) the entry point of the process for human activity recognition is the class **_`HumanActivityRecognition.java`_** and the function _`update(SensorData)`_
+
+(ii) all of the sensor data retrieved from the smartphone's internal sensors is encapsulated within **_`SensorData.java`_** so that only one object needs to be passed to the function.
+
 
 ## 1 - Filter Design and Filter Coefficients
 
@@ -27,24 +34,32 @@ See 'Slope Filtering: An FIR Approach to Linear Regression' section "REAL-TIME R
 
 Finally these coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;{\beta}" title="{\beta}" /> are convolved with the coefficients for their respective low pass filter
 
-<img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif}}[i]=\sum_{j=0}^{M-1}{\beta[j]}{b_{lpf}[i-j]}" title="b_{\text{lpfdif}}[i]=\sum_{j=0}^{M-1}{\beta[j]}{b_{lpf}[i-j]}" />
+<img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif}}[i]=\sum_{j=0}^{M-1}{\beta[j]}{b_{lpf}[i-j]}" title="b_{\text{lpfdif}}[i]=\sum_{j=0}^{M-1}{\beta[j]}{b_{lpf}[i-j]}"/>
 
 
 ## 2 - Pre-processing MEMS sensor data
 
-The filter coefficients in section 1. were used to process the data from the tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor
+The filter coefficients in Section 1 were used to process the data from the tri-axial accelerometer, tri-axial gyroscope and barometric pressure sensor by using finite impulse response filters which are implemented as **_`FIRFilter.java`_**. 
 
-The index k denotes the current time-step, N is the number of coefficients in the filter with coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.25}}" title="b_{\text{lpfdif,0.25}}" /> The accelerometer signal along the x-axis is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;a_{x}[k]" title="a_{x}[k]" />
+Note: 
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N_{\text{lpfdif,0.25}}-1}{b_{\text{lpfdif,0.25}}[i]}{\cdotp}{a_{x}[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N_{\text{lpfdif,0.25}}-1}{b_{\text{lpfdif,0.25}}[i]}{\cdotp}{a_{x}[k-i]}" />
+(i) The equations that follow below are implemented in the class member function **_`process()`_**
 
-The index k denotes the current time-step, N is the number of coefficients in the band-pass filter whose coefficients are <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{bpf}}" title="b_{\text{bpf}}" />. The gyroscope signal along the x-axis is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;{\omega}_{x}[k]" title="{\omega}_{x}[k]" />
+(ii) In the case of the accelerometer and gyroscope, only the equation for the x-axis is shown
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;\omega_{\text{bpf},x}[k]=\sum_{i=0}^{N_{\text{bpf}}-1}{b_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" title="\Large \omega_{\text{bpf},x}[k]=\sum_{i=0}^{N_{\text{bpf}}-1}{b_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" />
+The index k denotes the current time-step, N is the number of coefficients in the filter with coefficients <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.25}}" title="b_{\text{lpfdif,0.25}}"/>. The accelerometer signal along the x-axis is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;a_{x}[k]" title="a_{x}[k]"/>
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N_{\text{lpfdif,0.25}}-1}{b_{\text{lpfdif,0.25}}[i]}{\cdotp}{a_{x}[k-i]}" title="\Large a_{\text{lpfdif},x}[k]=\sum_{i=0}^{N_{\text{lpfdif,0.25}}-1}{b_{\text{lpfdif,0.25}}[i]}{\cdotp}{a_{x}[k-i]}"/>
+
+The index k denotes the current time-step, N is the number of coefficients in the band-pass filter whose coefficients are <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{bpf}}" title="b_{\text{bpf}}"/>. The gyroscope signal along the x-axis is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;{\omega}_{x}[k]" title="{\omega}_{x}[k]"/>
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;\omega_{\text{bpf},x}[k]=\sum_{i=0}^{N_{\text{bpf}}-1}{b_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}" title="\Large \omega_{\text{bpf},x}[k]=\sum_{i=0}^{N_{\text{bpf}}-1}{b_{\text{bpf}}[i]}{\cdotp}{{\omega_{x}}[k-i]}"/>
 
 The index k denotes the current time-step, N is the number of coefficients in the low-pass filter whose coefficients are <img src="https://latex.codecogs.com/svg.latex?\small&space;b_{\text{lpfdif,0.015}}" title="b_{\text{lpfdif,0.015}}" />. The barometer signal is denoted by <img src="https://latex.codecogs.com/svg.latex?\small&space;p[k]" title="p[k]" />
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;{\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif,0.015}}-1}{b_{\text{lpfdif,0.015}}[i]}{\cdotp}{p[k-i]}" title="\Large {\partial}p[k]=\sum_{i=0}^{N_{\text{lpfdif,0.015}}-1}{b_{\text{lpfdif,0.015}}[i]}{\cdotp}{p[k-i]}" />
+
+These filter co-efficients are implemented in the class **_`FilterCoefficients.java`_**
 
 ### 2.1 - Zero-order hold of the differential pressure signal 
 
@@ -70,6 +85,9 @@ or alternatively in terms of s[k-1]:
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" title="\Large s[k]=s[k-1]+x[k]-x[k-N_{\text{win}}]" />
 
 Note, x[k] is the sample to be added to the accumulated total, whilst <img src="https://latex.codecogs.com/svg.latex?\Large&space;x[k-N_{\text{win}}]" title="\Large x[k-N_{\text{win}}]" /> is the sample to be removed from the accumulated total, thus the previous <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_{\text{win}}" title="\Large N_{\text{win}}"/> samples need to be stored in a buffer
+
+This is implemented in **_`WindowHandler.java`_**
+
 ## 4 - Storing summed/aggregated features and window re-alignment to account for delay length
 Before passing the features to a machine learning algorithm or a model previously trained with extracted features, the features need to be re-aligned in the time domain so that they are representative of the same point in time. Recall from Section 1 that FIR filters were chosen for their linear phase response (i.e., the filter delays all frequency components of the signal by the same amount, i.e., half the number of taps/filter coefficients). Consequently the delay of each pre-processed signal is:
 
@@ -85,6 +103,8 @@ The differential pressure requires at least 160 samples from the barometer befor
 
 Since the features from the accelerometer and gyroscope are also processed with FIR filters, these signals are both delayed by 50 samples. As a result, we only need to go back to the 110th sample (i.e., 160-50).
 
+This is implemented in **_`FeatureBuffer.java`_**
+
 ## 5 - Classification or entry point for a Supervised Learning Algorithm
 
-At this point the aligned feature vector can be used by a classifier built using a machine learning algorithm to recognise human activities. Alternatively the feature vectors (along with the training labels) can be used by a machine learning algorithm to build a new classifier
+At this point the aligned feature vector can be used by a classifier built using a machine learning algorithm (implemented in **_`ClassifierBasic.java`_**) to recognise human activities. Alternatively the feature vectors (along with the training labels) can be used by a machine learning algorithm to build a new classifier
